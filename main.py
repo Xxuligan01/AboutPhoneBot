@@ -61,9 +61,9 @@ async def send_brend(message: types.Message):
         for m,n in mal.items():
             buttons.append(types.InlineKeyboardButton(text=str(m), callback_data=str(n)))
         keyboard1 = types.InlineKeyboardMarkup(row_width=2)
-        keyboard1.add(*buttons[0:60])
+        keyboard1.add(*buttons[0:100])
         keyboard2 = types.InlineKeyboardMarkup(row_width=2)
-        keyboard2.add(*buttons[60:117])
+        keyboard2.add(*buttons[100:])
         await message.answer("🤖Botda mavjud brendlar⤵️", reply_markup=keyboard1)
         await message.answer("🤖Botda mavjud brendlar⤵️", reply_markup=keyboard2)
         
