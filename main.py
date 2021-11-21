@@ -7,7 +7,7 @@ from tarjima import defTelefon
 from brand_name import TelefonNomi,TelefonHaqida,defPhone
 import sqlite3
 
-API_TOKEN = 'Sizning telegram token'
+API_TOKEN = 'Telegram bot token'
 logging.basicConfig(level=logging.INFO)
 
 bot = Bot(token=API_TOKEN)
@@ -56,19 +56,17 @@ async def send_exit(message: types.Message):
 async def send_brend(message: types.Message):
     buttons = []
     mal=defPhone()
-    
     if mal:
         for m,n in mal.items():
             buttons.append(types.InlineKeyboardButton(text=str(m), callback_data=str(n)))
         keyboard1 = types.InlineKeyboardMarkup(row_width=2)
-        keyboard1.add(*buttons[0:100])
+        keyboard1.add(*buttons[:100])
         keyboard2 = types.InlineKeyboardMarkup(row_width=2)
         keyboard2.add(*buttons[100:])
         await message.answer("🤖Botda mavjud brendlar⤵️", reply_markup=keyboard1)
         await message.answer("🤖Botda mavjud brendlar⤵️", reply_markup=keyboard2)
         
-
-    else:"🆘Texnik xatolik.\nAdmin ga murojaat qiling!!!"
+    else: await message.answer("🆘Ma'lumotlar omborida xatolik.\nBirozdan so'ng urunib ko'ring!!!")
 
 @dp.callback_query_handler()
 async def send_value(call: types.CallbackQuery):
